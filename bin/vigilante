@@ -1,0 +1,15 @@
+#!/bin/sh
+
+. /etc/vigilante.conf
+
+separator="-f"
+tailArg="$( printf "${separator}%s" "${files[@]}" )"
+tailArg="${tailArg:${#separator}}" # remove leading separator
+
+tail -n 0 $tailArg | while read line; do
+	if [ $(echo "${line}" | grep -E "${search}") -eq 0 ]; then
+		action "${line}"
+		exit
+	fi
+done
+
