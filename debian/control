@@ -1,0 +1,18 @@
+Source: vigilante
+Section: utils
+Priority: extra
+Maintainer: Jérémy Lal <kapouer@melix.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: https://github.com/kapouer/vigilante
+Vcs-Git: git://github.com/kapouer/vigilante.git
+Vcs-Browser: https://github.com/kapouer/vigilante
+
+Package: vigilante
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: call a url once when a pattern appears on a list of tailed files
+ Given a list of files to tail, a pattern to search, and a command to run
+ which receives the current matched line, vigilante simply calls that
+ command and exits.
+ It is a simple systemd service, and has a simple shell configuration file.

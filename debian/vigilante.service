@@ -3,7 +3,7 @@ Description=Call a url once when a pattern appears on a list of tailed files
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/vigilante
+ExecStart=/usr/share/vigilante/vigilante
 
 [Install]
 WantedBy=multi-user.target
