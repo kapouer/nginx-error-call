@@ -2,7 +2,7 @@
 
 . /etc/vigilante.conf
 
-tail -n 0 $tailArgs | while read line; do
+tail -q -n 0 $tailArgs | while read line; do
 	if [ "$(echo "${line}" | grep -E "${search}")" != "" ]; then
 		action "${line}"
 		exit
