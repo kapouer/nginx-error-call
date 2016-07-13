@@ -1,3 +1,9 @@
+vigilante (0.5) unstable; urgency=medium
+
+  * Accept a limit param 
+
+ -- Jérémy Lal <kapouer@melix.org>  Wed, 13 Jul 2016 13:20:36 +0200
+
 vigilante (0.4) unstable; urgency=medium
 
   * Fix version 0.3 
