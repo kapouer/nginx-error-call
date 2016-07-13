@@ -1,13 +1,21 @@
 #!/bin/sh
 
+limit=1
+
 . /etc/vigilante.conf
+
+counter=0
 
 funTail() {
         if [ "$tailArgs" != "" ]; then
                 tail -q -n 0 $tailArgs | while read line; do
                         if [ "$(echo "${line}" | grep "${search}")" != "" ]; then
-                                action "${line}"
-                                exit
+                                if [ $counter -lt $limit ]; then
+                                        action "${line}"
+                                else
+                                        echo "skipping action $counter > $limit"
+                                fi
+                                counter=$((counter+1))
                         fi
                 done
         fi
@@ -17,14 +25,19 @@ funJournal() {
         if [ "$watchJournal" = "1" ]; then
                 journalctl -f | while read line; do
                         if [ "$(echo "${line}" | grep "${search}")" != "" ]; then
-                                action "${line}"
-                                exit
+                                if [ $counter -lt $limit ]; then
+                                        action "${line}"
+                                else
+                                        echo "skipping action $counter > $limit"
+                                fi
+                                counter=$((counter+1))
                         fi
                 done
         fi
 }
 
 funTail&
+
 funJournal&
 
 while true; do sleep 100; done
