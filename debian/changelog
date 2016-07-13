@@ -1,4 +1,10 @@
-vigilante (0.1) unstable; urgency=low
+vigilante (0.3) unstable; urgency=medium
+
+  * Set watchJournal=1 to watch journalctl output too
+
+ -- Jérémy Lal <kapouer@melix.org>  Wed, 13 Jul 2016 12:35:05 +0200
+
+vigilante (0.2) unstable; urgency=low
 
   * Initial release
 
