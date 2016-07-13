@@ -2,19 +2,30 @@
 
 . /etc/vigilante.conf
 
-if [ "$tailArgs" != "" ]; then
-	tail -q -n 0 $tailArgs | while read line; do
-		if [ "$(echo "${line}" | grep "${search}")" != "" ]; then
-			action "${line}"
-		fi
-	done
-fi
+funTail() {
+        if [ "$tailArgs" != "" ]; then
+                tail -q -n 0 $tailArgs | while read line; do
+                        if [ "$(echo "${line}" | grep "${search}")" != "" ]; then
+                                action "${line}"
+                                exit
+                        fi
+                done
+        fi
+}
 
-if [ "$watchJournal" = "1"]; then
-	journalctl -f | while read line; do
-		if [ "$(echo "${line}" | grep "${search}")" != "" ]; then
-			action "${line}"
-		fi
-	done
-fi
+funJournal() {
+        if [ "$watchJournal" = "1" ]; then
+                journalctl -f | while read line; do
+                        if [ "$(echo "${line}" | grep "${search}")" != "" ]; then
+                                action "${line}"
+                                exit
+                        fi
+                done
+        fi
+}
+
+funTail&
+funJournal&
+
+while true; do sleep 100; done
 
