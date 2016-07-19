@@ -4,6 +4,8 @@ Description=Call a url once when a pattern appears on a list of tailed files
 [Service]
 Type=simple
 ExecStart=/usr/share/vigilante/vigilante
+Restart=always
+WatchdogSec=2h
 
 [Install]
 WantedBy=multi-user.target
