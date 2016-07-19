@@ -1,3 +1,9 @@
+vigilante (0.6) unstable; urgency=medium
+
+  * Restart service every two hours 
+
+ -- Jérémy Lal <kapouer@melix.org>  Tue, 19 Jul 2016 11:35:52 +0200
+
 vigilante (0.5) unstable; urgency=medium
 
   * Accept a limit param 
